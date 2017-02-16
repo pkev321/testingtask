@@ -75,6 +75,7 @@ public class InputMailCheck extends AbstractTestNGCucumberTests {
             if (mailSubject.getText().trim().toLowerCase().equals(subject.trim().toLowerCase()))
                 mailSubject.click();
 
+        // Commet
         new WebDriverWait(driver, 60).until(ExpectedConditions.presenceOfElementLocated(MailLetterPage.MailLetterPageProperties.MAIL_TEXT));
 
         letterPage = new MailLetterPage(driver);
