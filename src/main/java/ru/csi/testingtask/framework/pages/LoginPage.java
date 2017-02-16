@@ -12,7 +12,7 @@ public class LoginPage {
     public static class LoginPageProperties {
        public static final By USER_NAME_FILED = By.name("login");
        public static final By PASSWORD_FIELD = By.name("passwd");
-       public static final By SIGN_IN_BUTTON = By.xpath("//button[contains(@class, \'nb-button\') and @type=\'submit\']");
+       public static final By SIGN_IN_BUTTON = By.xpath("//input[contains(@class, \'b-mail\') and @type=\'submit\']");
     }
 
     private WebDriver driver;
