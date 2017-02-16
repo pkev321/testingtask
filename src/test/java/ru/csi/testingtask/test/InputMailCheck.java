@@ -37,7 +37,7 @@ public class InputMailCheck extends AbstractTestNGCucumberTests {
     @BeforeSuite
     public void systemSettings () throws IOException {
         if(System.getProperty("os.name").startsWith("Mac"))
-            System.setProperty("webdriver.gecko.driver", getClass().getClassLoader().getResource("drivers/geckodriver").getPath());
+            System.setProperty("webdriver.gecko.driver", "/Users/khodakovskiidmitrii/Documents/LevelUp/QA_Automation_02032017/testingtask/src/test/resources/drivers/geckodriver");
         else if (System.getProperty("os.name").startsWith("Window"))
             System.setProperty("webdriver.gecko.driver", getClass().getClassLoader().getResource("drivers/geckodriver.exe").getPath());
 
