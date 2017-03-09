@@ -8,6 +8,12 @@
     <artifactId>testing-task</artifactId>
     <version>1.0</version>
 
+    <properties>
+        <aspectj.version>1.7.4</aspectj.version>
+        <allure.version>1.5.2</allure.version>
+    </properties>
+
+
     <dependencies>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -57,6 +63,12 @@
             <artifactId>hamcrest-all</artifactId>
             <version>1.3</version>
         </dependency>
+
+        <dependency>
+            <groupId>ru.yandex.qatools.allure</groupId>
+            <artifactId>allure-testng-adaptor</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
     </dependencies>
 
 
@@ -73,17 +85,34 @@
                 </configuration>
             </plugin>
 
-            <!-- Test run plugin -->
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.12</version>
+                <version>2.14</version>
                 <inherited>true</inherited>
                 <configuration>
+                    <testFailureIgnore>true</testFailureIgnore>
+                    <argLine>
+                        -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
+                    </argLine>
                     <suiteXmlFiles>
                        <suiteXmlFile>${project.basedir}/src/test/resources/suits/testing.xml</suiteXmlFile>
                     </suiteXmlFiles>
+                    <properties>
+                        <property>
+                            <name>listener</name>
+                            <value>ru.yandex.qatools.allure.testng.AllureTestListener</value>
+                        </property>
+                    </properties>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
