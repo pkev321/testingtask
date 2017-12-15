@@ -8,8 +8,10 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
+import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -36,16 +38,12 @@ public class InputMailCheck extends AbstractTestNGCucumberTests {
 
     @BeforeSuite
     public void systemSettings () throws IOException {
-        if(System.getProperty("os.name").startsWith("Mac"))
-            System.setProperty("webdriver.gecko.driver", "/Users/khodakovskiidmitrii/Documents/LevelUp/QA_Automation_02032017/testingtask/src/test/resources/drivers/geckodriver");
-        else if (System.getProperty("os.name").startsWith("Window"))
-            System.setProperty("webdriver.gecko.driver", getClass().getClassLoader().getResource("drivers/geckodriver.exe").getPath());
-
+        ChromeDriverManager.getInstance().setup();
     }
 
     @Before
     public void setUp () {
-        driver = new FirefoxDriver();
+        driver = new ChromeDriver();
     }
 
     @Given("^^Пользователь открывает страницу почтового сервера: \"([^\"]*)\"$")
